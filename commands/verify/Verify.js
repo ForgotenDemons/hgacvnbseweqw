@@ -18,107 +18,12 @@ module.exports = class VerifyCommand extends Command {
   }
 
   async run(msg) {
-    if (msg.channel.id !== '488928204577439764') return;
-
-    function giveRoles(id) {
-      var maingroup = '4410645'; 
-      Roblox.getRankInGroup(maingroup, id)
-        .then(function(rank) {
-          Roblox.getUsernameFromId(id)
-            .then(function(username) {
-              if (rank === 0) {
-                msg.author.send(`You're not on the group: Newingtont City Police Department`);
-              } else 
-              if (rank >= 1) {
-                msg.member.addRole(msg.guild.roles.find('name', 'Verified')).catch(console.error);
-              }
-              if (rank === 1) {
-                msg.member.setNickname(`[UR] ${username}`);
-                msg.member.addRole(msg.guild.roles.find('name', '[UR] Cadet')).catch(console.error);
-              } else
-              if (rank === 2) {
-                msg.member.setNickname(`[S] ${username}`);
-                msg.member.addRole(msg.guild.roles.find('name', 'Suspended')).catch(console.error);
-              } else
-              if (rank === 3) {
-                msg.member.setNickname(`[LR] ${username}`);
-                msg.member.addRole(msg.guild.roles.find('name', '[LR] Officer')).catch(console.error);
-              } else
-              if (rank === 4) {
-                msg.member.setNickname(`[LR] ${username}`);
-                msg.member.addRole(msg.guild.roles.find('name', '[LR] Corporal')).catch(console.error);
-              } else
-              if (rank === 5) {
-                msg.member.setNickname(`[LR] ${username}`);
-                msg.member.addRole(msg.guild.roles.find('name', '[LR] Constable')).catch(console.error);
-              } else
-              if (rank === 6) {
-                msg.member.setNickname(`[LR] ${username}`);
-                msg.member.addRole(msg.guild.roles.find('name', '[LR] Sergeant')).catch(console.error);
-              } else
-              if (rank === 7) {
-                msg.member.setNickname(`[LR] ${username}`);
-                msg.member.addRole(msg.guild.roles.find('name', '[LR] Sergeant Major')).catch(console.error);
-              } else
-              if (rank === 8) {
-                msg.member.setNickname(`[MR] ${username}`);
-                msg.member.addRole(msg.guild.roles.find('name', '[LR] Sergeant Major')).catch(console.error);
-              } else
-              if (rank === 9) {
-                msg.member.setNickname(`[MR] ${username}`);
-              } else
-                if (rank === 10) {
-                msg.member.setNickname(`[MR] ${username}`);
-              } else
-                if (rank === 11) {
-                msg.member.setNickname(`[MR] ${username}`);
-              } else
-                if (rank === 12) {
-                msg.member.setNickname(`[MR] ${username}`);
-              } else
-                if (rank === 16) {
-                msg.member.setNickname(`[HR] ${username}`);
-                msg.member.addRole(msg.guild.roles.find('name', 'HR')).catch(console.error);
-              } else
-                if (rank === 17) {
-                msg.member.setNickname(`[HR] ${username}`);
-                msg.member.addRole(msg.guild.roles.find('name', 'HR')).catch(console.error);
-              } else
-                if (rank === 20) {
-                msg.member.setNickname(`[HC] ${username}`);
-                msg.member.addRole(msg.guild.roles.find('name', 'HC')).catch(console.error);
-              } else
-                if (rank === 244) {
-                msg.member.setNickname(`[HC] ${username}`);
-                msg.member.addRole(msg.guild.roles.find('name', 'HC')).catch(console.error);
-              } else
-                if (rank === 254) {
-                msg.member.setNickname(`[DC] ${username}`);
-                msg.member.addRole(msg.guild.roles.find('name', 'Mayor')).catch(console.error);
-              } else
-              if (rank === 255) {
-                try {
-                  msg.member.setNickname(`[C] ${username}`);
-                } catch (e) {
-                  console.log('USERISOWNER');
-                }
-                msg.member.addRole(msg.guild.roles.find('name', '****Chief Of Police****')).catch(console.error); //CHIEF RANKS
-              } else
-              if (rank > 255) {
-                verifyMsg.edit('Rank is above 255. This is not normal.');
-              }
-            }).catch(function(err) {
-              msg.channel.send('Unable to get rank from group');
-              console.log(err);
-            });
-        });
-    }
 
     const verifyMsg = await msg.reply('Checking account info...');
     const userInfo = await db.fetch(`user_${msg.author.id}`);
     if (userInfo !== null) {
       const id = userInfo;
-      giveRoles(id);
+      msg.member.addRole(msg.guild.roles.find('name', 'Verified')).catch(console.error);
       return verifyMsg.edit('Your account has already been verified!');
     }
 
@@ -172,12 +77,17 @@ module.exports = class VerifyCommand extends Command {
                               msg.author.send(embed);
                               verifyMsg.delete();
                               console.log(logUser);
-                              giveRoles(id);
+                              msg.member.addRole(msg.guild.roles.find('name', 'Verified')).catch(console.error);
+                              Roblox.getUsernameFromId(id)
+                              .then(function(username) {
+                                msg.member.setNickname(`${username}`);
+                              })
                             } else {
                               console.log(text);
                               const embed = new Discord.RichEmbed()
                               .setColor(0xb83e3e)
                               .setDescription(`I couldn't find the code on your ROBLOX status!`)
+                              msg.author.send(embed)
                               return;
                             }
                           }).catch(function(err) {
