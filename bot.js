@@ -1,4 +1,4 @@
-var token = "NTAyNzE0Mjk2MjcxMzcyMjk4.Drp5cQ.djl-Tl625hSYthVgKc2P0_wjKAw";
+var token = "NTE3NDY4MjU2MTY1MDM2MDM0.DuCpkw.wLEYOQEycCtKqPXDgi-FCCwC21E";
 const { CommandoClient } = require('discord.js-commando');
 const path = require('path');
 
@@ -14,8 +14,6 @@ client.registry
 	.registerDefaultTypes()
 	.registerGroups([
 		['verify', 'Verify'],
-		['update', 'Update'],
-		['help', 'Help'],
 	])
 	.registerDefaultGroups()
 	.registerDefaultCommands({
