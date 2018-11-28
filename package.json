@@ -1,0 +1,23 @@
+{
+  "name": "awerqxccx21",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "awerqxccx21",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^11.4.2",
+    "discord.js-commando": "^0.10.0",
+    "noblox.js": "^4.1.2",
+    "node-gyp": "^3.8.0",
+    "nodemon": "^1.18.3",
+    "quick.db": "^7.0.0-b15",
+    "rebuild": "^0.1.2",
+    "roblox-js": "^4.0.2"
+  },
+  "devDependencies": {},
+  "keywords": [],
+  "description": ""
+}
