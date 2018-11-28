@@ -14,6 +14,7 @@ client.registry
 	.registerDefaultTypes()
 	.registerGroups([
 		['verify', 'Verify'],
+		['botinfo', 'Botinfo'],
 	])
 	.registerDefaultGroups()
 	.registerDefaultCommands({
